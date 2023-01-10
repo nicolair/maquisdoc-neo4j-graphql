@@ -1,7 +1,7 @@
 {
   "name": "maquisdoc-neo4j-graphql",
   "version": "1.0.0",
-  "description": "",
+  "description": "Serveur GraphQL Apollo présentant une base de données en graphe neo4j",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
