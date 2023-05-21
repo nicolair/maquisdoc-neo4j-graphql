@@ -1,7 +1,7 @@
 const { Neo4jGraphQL } = require("@neo4j/graphql");
 const { ApolloServer, gql } = require("apollo-server");
 const neo4j = require("neo4j-driver");
-
+// test rebuild
 
 const typeDefs = gql`
 type Document {
