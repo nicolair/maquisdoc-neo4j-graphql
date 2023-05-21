@@ -18,6 +18,7 @@ type Document {
     urlSrcCorr: String
     concepts: [Concept!]! @relationship(type: "DOCUMENTE", direction: OUT)
     conceptsEVAL: [Concept!]! @relationship(type: "EVALUE", direction: OUT)
+    conceptsINDEXE: [Concept!]! @relationship(type: "INDEXE", direction: OUT)
     evenements: [Evenement!]! @relationship(type: "UTILISE", direction: IN)
     contenants: [Document!]! @relationship(type: "CONTIENT", direction: IN)
 }
