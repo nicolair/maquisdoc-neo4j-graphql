@@ -3,7 +3,7 @@ const { ApolloServer, gql } = require("apollo-server");
 const neo4j = require("neo4j-driver");
 // test rebuild
 
-const typeDefs = gql`
+const typeDefs = `#graphql
 type Document {
     _id: ID! @cypher(statement: "RETURN ID(this)") 
     titre: String
@@ -47,7 +47,7 @@ type Concept {
     _id: ID! @cypher(statement: "RETURN ID(this)") 
     documents: [Document!]! @relationship(type: "DOCUMENTE", direction: IN)
     listexos: [Document!]! @cypher(statement: """
-      MATCH (f {typeDoc: \\"liste exercices\\"})-[:EVALUE]->(this)
+      MATCH (f {typeDoc: 'liste exercices'})-[:EVALUE]->(this)
       RETURN f
     """)
     documentsvoisins: [DocumentVoisin] @cypher(statement: """ 
@@ -87,39 +87,39 @@ type Evenement {
 
 type Query {
   feuilleexercicesdocuments : [Document!]! @cypher(statement: """
-    MATCH (d:Document {typeDoc:\\"liste exercices\\"})
+    MATCH (d:Document {typeDoc: 'liste exercices'})
     RETURN d
   """),
   exercicedocuments : [Document!]! @cypher(statement: """
-    MATCH (d:Document {typeDoc:\\"exercice\\"})
+    MATCH (d:Document {typeDoc:'exercice'})
     RETURN d
   """),
   coursdocuments : [Document!]! @cypher(statement: """
-    MATCH (d:Document {typeDoc:\\"cours\\"})
+    MATCH (d:Document {typeDoc:'cours'})
     RETURN d
   """),
   problemedocuments : [Document!]! @cypher(statement: """
-    MATCH (d:Document {typeDoc:\\"problème\\"})
+    MATCH (d:Document {typeDoc:'problème'})
     RETURN d
   """),
   semaines : [Evenement!]! @cypher(statement: """
-    MATCH (s:Evenement {typeEvt:\\"semaine de colle\\"})
+    MATCH (s:Evenement {typeEvt:'semaine de colle'})
     RETURN s
   """),
   searchpbs (mot:String): [Document!] @cypher(statement: """
-    CALL db.index.fulltext.queryNodes(\\"TitresEtDescriptions\\", $mot)
+    CALL db.index.fulltext.queryNodes('TitresEtDescriptions', $mot)
       YIELD node, score
-    WHERE node.typeDoc = \\"problème\\"
+    WHERE node.typeDoc = 'problème'
     RETURN  node
   """),
   searchcours (mot:String): [Document!] @cypher(statement: """
-    CALL db.index.fulltext.queryNodes(\\"TitresEtDescriptions\\", $mot)
+    CALL db.index.fulltext.queryNodes('TitresEtDescriptions', $mot)
       YIELD node, score
-    WHERE node.typeDoc = \\"cours\\"
+    WHERE node.typeDoc = 'cours'
     RETURN  node
   """),
   searchconcepts (mot:String): [Concept!] @cypher(statement: """
-    CALL db.index.fulltext.queryNodes(\\"LittérauxEtDescriptions\\", $mot)
+    CALL db.index.fulltext.queryNodes('LittérauxEtDescriptions', $mot)
       YIELD node
     RETURN  node
   """)
@@ -129,6 +129,7 @@ type Query {
 
 const neo4j_url = process.env.NEO4J_URL || "bolt://localhost:7687"
 const neo4j_pw = process.env.NEO4J_PASSWORD
+
 const neo4j_username = process.env.NEO4J_USERNAME
 const driver = neo4j.driver(
     neo4j_url,
