@@ -170,6 +170,7 @@ type Query {
 
 const neo4j_url = process.env.NEO4J_URL || "bolt://localhost:7687"
 const neo4j_pw = process.env.NEO4J_PASSWORD
+
 const neo4j_username = process.env.NEO4J_USERNAME
 const driver = neo4j.driver(
     neo4j_url,
