@@ -2,6 +2,7 @@
   "name": "maquisdoc-neo4j-graphql",
   "version": "1.0.0",
   "description": "Serveur GraphQL Apollo présentant une base de données en graphe neo4j",
+  "type":"module",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,9 +11,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@neo4j/graphql": "^3.5.0",
-    "apollo-server": "^3.9.0",
-    "graphql": "^16.5.0",
-    "neo4j-driver": "^4.4.6"
+    "@apollo/server": "^5.0.0",
+    "@neo4j/graphql": "^7.0.0",
+    "graphql": "^16.11.0",
+    "neo4j-driver": "^5.28.2"
   }
 }
