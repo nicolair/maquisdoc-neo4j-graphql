@@ -22,6 +22,10 @@ type Document @node {
       statement: "RETURN ID(this) AS ident",
       columnName: "ident") 
     titre: String
+    date: String @cypher(
+      statement: "RETURN toString(this.date) as date",
+      columnName: "date"
+    )
     typeDoc: String
     description: String
     url: String
