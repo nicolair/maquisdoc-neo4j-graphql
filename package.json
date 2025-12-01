@@ -10,6 +10,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "engines": {
+     "node": ">= v22.20.2",
+     "npm": ">= 9.2.0"
+  }
   "dependencies": {
     "@apollo/server": "^5.1.0",
     "@neo4j/graphql": "^7.3.1",
